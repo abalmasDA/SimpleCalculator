@@ -5,34 +5,35 @@ public class MainCalculator {
 
     public static void main(String[] args) {
 
-        int operand1 = getOperand1();
-        int operand2 = getOperand2();
+        double operand1 = getOperand1();
+        double operand2 = getOperand2();
         char operation = getOperation();
-        int resultCalculation = calculation(operand1, operand2, operation);
+        double resultCalculation = calculation(operand1, operand2, operation);
 
     }
 
-    public static int getOperand1() {
+    public static double getOperand1() {
         System.out.print("Please, input number 1:");
-        int number1 = 0;
+        double number1 = 0;
         while (true) {
-            if (scannerInput.hasNextInt()) {
-                number1 = scannerInput.nextInt();
+            if (scannerInput.hasNextDouble()) {
+                number1 = scannerInput.nextDouble();
                 break;
             } else {
                 scannerInput.next();
                 System.out.print("Your enter wrong format number, try again:");
+
             }
         }
         return number1;
     }
 
-    public static int getOperand2() {
+    public static double getOperand2() {
         System.out.print("Please, input number 2:");
-        int number2 = 0;
+        double number2 = 0;
         while (true) {
-            if (scannerInput.hasNextInt()) {
-                number2 = scannerInput.nextInt();
+            if (scannerInput.hasNextDouble()) {
+                number2 = scannerInput.nextDouble();
                 break;
             } else {
                 scannerInput.next();
@@ -48,40 +49,34 @@ public class MainCalculator {
         while (true) {
             if (scannerInput.hasNext()) {
                 sign = scannerInput.next().charAt(0);
-                break;
-            } else {
-                System.out.println("Your enter wrong operation, try again:");
-                scannerInput.next();
-                sign = getOperation();
+                if ((sign == '+') | (sign == '-') | (sign == '*') | (sign == '/')) break;
+                System.out.print("Your enter wrong operation, try again:");
             }
         }
         return sign;
     }
 
-
-    public static int calculation(int operand1, int operand2, char operation) {
-        int result = 0;
+    public static double calculation(double operand1, double operand2, char operation) {
+        double result = 0;
         switch (operation) {
             case '+':
                 result = Operation.Adding(operand1, operand2);
-                System.out.println("Result: " + operand1 + " + " + operand2 + " = " + result);
+                System.out.println("Result: " + result);
                 break;
             case '-':
                 result = Operation.Subtraction(operand1, operand2);
-                System.out.println("Result: " + operand1 + " - " + operand2 + " = " + result);
+                System.out.println("Result: " + result);
                 break;
             case '*':
                 result = Operation.Multiplication(operand1, operand2);
-                System.out.println("Result: " + operand1 + " * " + operand2 + " = " + result);
+                System.out.println("Result: " + result);
                 break;
             case '/':
                 result = Operation.Division(operand1, operand2);
-                System.out.println("Result: " + operand1 + " / " + operand2 + " = " + result);
+                System.out.println("Result: " + result);
                 break;
 
 
-            default:
-                System.out.println("not right");
         }
         return result;
     }
